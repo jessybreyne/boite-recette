@@ -22,6 +22,18 @@ class Admin extends Component {
         })
     }
 
+    // Règles firebase pour sécuriser l'écriture et la lecture
+    // {
+    //     "rules": {
+    //         ".read": true,
+    //         ".write": "!data.exists()",
+    //         "$box" : {
+    //         ".write": "auth != null && (!data.exists() || data.child('chef').val() === auth.uid)",
+    //         ".read": true
+    //         }
+    //     }
+    // }
+
     handleAuth = async authData => {
         console.log(authData)
         const box = await base.fetch(this.props.pseudo, { context: this })
