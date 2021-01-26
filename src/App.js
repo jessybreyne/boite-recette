@@ -45,6 +45,7 @@ class App extends Component {
         <Header pseudo={this.state.pseudo} />
         { cards }
         <Admin
+          pseudo={this.state.pseudo}
           ajouterRecette={this.ajouterRecette}
           chargerExemple={this.chargerExemple}
         ></Admin>
