@@ -13,6 +13,15 @@ class Admin extends Component {
         chef: null
     }
 
+    // Conserver la connexion active
+    componentDidMount () {
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                this.handleAuth({ user })
+            }
+        })
+    }
+
     handleAuth = async authData => {
         console.log(authData)
         const box = await base.fetch(this.props.pseudo, { context: this })
@@ -37,9 +46,17 @@ class Admin extends Component {
             .then(this.handleAuth)
     }
 
+    logout = async () => {
+        console.log('Déconnexion')
+        await firebase.auth().signOut()
+        this.setState({ uid: null })
+    }
+
     render() {
         const { recettes, ajouterRecette, majRecette, chargerExemple, supprimerRecette } = this.props
         
+        const logout = <button onClick={this.logout}>Déconnexion</button>
+
         // Si l'utlisateur n'est pas connecté
         if (!this.state.uid) {
             return <Login authenticate={this.authenticate}/>
@@ -49,6 +66,7 @@ class Admin extends Component {
             return (
                 <div>
                     <p>Tu n'es pas le chef de cette boite !</p>
+                    {logout}
                 </div>
             )
         }
@@ -68,6 +86,7 @@ class Admin extends Component {
                             recettes={recettes} />)
                 }
                 <footer>
+                    {logout}
                     <button onClick={chargerExemple}>Remplir</button>
                 </footer>
             </div>
