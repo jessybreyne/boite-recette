@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AjouterRecette from './AjouterRecette'
-// import AdminForm from './AdminForm'
+import AdminForm from './AdminForm'
 import Login from './Login'
 
 import firebase from 'firebase/app'
@@ -38,7 +38,7 @@ class Admin extends Component {
     }
 
     render() {
-        // const { recettes, ajouterRecette, majRecette, chargerExemple, supprimerRecette } = this.props
+        const { recettes, ajouterRecette, majRecette, chargerExemple, supprimerRecette } = this.props
         
         // Si l'utlisateur n'est pas connecté
         if (!this.state.uid) {
@@ -56,9 +56,9 @@ class Admin extends Component {
         return (
             <div className="cards">
                 <AjouterRecette 
-                    AjouterRecette={this.props.AjouterRecette}
+                    AjouterRecette={ajouterRecette}
                 />
-                {/* {
+                {
                     Object.keys(recettes)
                         .map(key => <AdminForm
                             key={key}
@@ -66,9 +66,9 @@ class Admin extends Component {
                             majRecette={majRecette}
                             supprimerRecette={supprimerRecette}
                             recettes={recettes} />)
-                } */}
+                }
                 <footer>
-                    <button onClick={this.props.chargerExemple}>Remplir</button>
+                    <button onClick={chargerExemple}>Remplir</button>
                 </footer>
             </div>
         );
