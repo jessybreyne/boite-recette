@@ -10,9 +10,14 @@ import recettes from './recettes'
 import base from './base'
 
 class App extends Component {
-  state = {
-    pseudo: this.props.match.params.pseudo,
-    recettes: {}
+  constructor (props) {
+    super(props)
+    this.state = {
+      pseudo: this.props.match.params.pseudo,
+      recettes: {},
+      update: false
+    }
+    console.log('Constructor')
   }
 
   componentDidMount () {
@@ -20,6 +25,12 @@ class App extends Component {
       context: this,
       state: 'recettes'
     })
+    this.setState({ update: true })
+    console.log('ComponentDidMount')
+  }
+
+  componentDidUpdate () {
+    console.log('componentDidUpdate')
   }
 
   componentWillUnmount () {
@@ -49,6 +60,7 @@ class App extends Component {
   }
 
   render () {
+    console.log('render')
     const cards = Object.keys(this.state.recettes)
       .map(key => <Card key={key} details={this.state.recettes[key]}/>)
 
