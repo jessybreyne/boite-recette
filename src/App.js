@@ -25,7 +25,9 @@ const App = ({
     <ColorContext>
       <div className='box'>
         <Header pseudo={match.params.pseudo} />
-        { cards }
+        <div className='cards'>
+          { cards }
+        </div>
         <Admin
           pseudo={match.params.pseudo}
           recettes={recettes}
