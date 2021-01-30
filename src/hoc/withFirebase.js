@@ -58,7 +58,7 @@ const withFirebase = WrappedComponent => (
                     recettes={this.state.recettes}
                     ajouterRecette={this.ajouterRecette}
                     majRecette={this.majRecette}
-                    suppimerRecette={this.supprimerRecette}
+                    supprimerRecette={this.supprimerRecette}
                     chargerExemple={this.chargerExemple}
                     {...this.props}
                 />
